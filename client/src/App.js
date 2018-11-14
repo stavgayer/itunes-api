@@ -28,7 +28,7 @@ class App extends Component {
 
     Promise.all([
       fetch(
-        `https://itunes.apple.com/search?term=${value}&entity=musicVideo&limit=25`
+        `https://itunes.apple.com/search?term=${value}&entity=musicVideo&limit=25`, { method: 'get', mode: 'no-cors' }
       ),
       fetch(`/search`, {
         method: "POST",
