@@ -2,7 +2,7 @@
 
 ## Introduction
 
-comment section exercise using : Node.js , React  and MongoDB.
+Itunes Video Searching exercise using : Node.js , React  and MongoDB.
 
 
 ##  How to install
