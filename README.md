@@ -1,4 +1,4 @@
-# Itunes-API-Ecercise
+# Itunes-API-Exercise
 
 ## Introduction
 
