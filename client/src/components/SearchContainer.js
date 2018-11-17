@@ -18,19 +18,31 @@ const styles = theme => ({
 
 const SearchContainer = props => {
   return (
-    <Grid container spacing={24}>
+    <Grid justify="center" container>
       <Grid item xs={12}>
         <SearchForm fetchResults={props.fetchResults} />
       </Grid>
+      <Grid item xs={10}>
+        <Grid container spacing={16}>
+          {props.results &&
+            props.results.results.map(item => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={item.trackId}>
+                <VideoItem item={item} />
+              </Grid>
+            ))}
+        </Grid>
+      </Grid>
 
-      {props.results &&
-        props.results.results.map(item => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={item.trackId}>
-            <VideoItem item={item} />
-          </Grid>
-        ))}
-      {props.loading && <div>loading...</div>}
-      {props.error && <div>Error was occured</div>}
+      {props.loading && (
+        <Grid item xs={3}>
+          <div>loading...</div>
+        </Grid>
+      )}
+      {props.error && (
+        <Grid item xs={3}>
+          <div>Error was occured</div>
+        </Grid>
+      )}
       <TopTenLink />
     </Grid>
   );

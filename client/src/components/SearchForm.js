@@ -18,24 +18,22 @@ export default class SearchForm extends Component {
   };
   render() {
     return (
-      <Grid container>
-        <Grid item xs={8}>
-          <form onSubmit={this.handleSubmit}>
-            <TextField
-              label="Search here: "
-              style={{ margin: 10 }}
-              placeholder="Your favorite artist"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true
-              }}
-              name="searchTerm"
-              value={this.state.searchTerm}
-              onChange={this.onChangeInput}
-            />
-          </form>
-        </Grid>
+      <Grid item xs={8}>
+        <form onSubmit={this.handleSubmit}>
+          <TextField
+            label="Search here: "
+            style={{ margin: 10 }}
+            placeholder="Your favorite artist"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true
+            }}
+            name="searchTerm"
+            value={this.state.searchTerm}
+            onChange={this.onChangeInput}
+          />
+        </form>
       </Grid>
     );
   }

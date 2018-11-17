@@ -11,7 +11,9 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 600,
-    padding: theme.spacing.unit * 2
+    padding: theme.spacing.unit * 2,
+    minHeight : 250
+
   },
   image: {
     width: 128,
