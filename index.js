@@ -10,7 +10,7 @@ require("./models/SearchTerm");
 const isProduction = process.env.NODE_ENV === "production";
 mongoose.connect(keys.mongoURI);
 const app = express();
-app.use(cors());
+app.use(cors({credentials: true, origin: true}));
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({
     extended: false
