@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import SearchForm from "./SearchForm";
-import TopTenLink from './TopTenLink'
+import TopTenLink from "./TopTenLink";
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -19,8 +19,6 @@ const styles = theme => ({
 const SearchContainer = props => {
   return (
     <Grid container spacing={24}>
-      {props.loading && <div>loading...</div>}
-      {props.error && <div>{props.error}</div>}
       <Grid item xs={12}>
         <SearchForm fetchResults={props.fetchResults} />
       </Grid>
@@ -31,7 +29,9 @@ const SearchContainer = props => {
             <VideoItem item={item} />
           </Grid>
         ))}
-        <TopTenLink />
+      {props.loading && <div>loading...</div>}
+      {props.error && <div>Error was occured</div>}
+      <TopTenLink />
     </Grid>
   );
 };

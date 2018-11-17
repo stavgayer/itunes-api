@@ -28,7 +28,8 @@ class App extends Component {
 
     Promise.all([
       fetch(
-        `https://itunes.apple.com/search?term=${value}&entity=musicVideo&limit=25`, { method: 'get', mode: 'no-cors' }
+        `https://itunes.apple.com/search?term=${value}&entity=musicVideo&limit=25`,
+        { method: "get", mode: "no-cors" , headers:{"Content-Type" : "text/javascript"}}
       ),
       fetch(`/search`, {
         method: "POST",
@@ -40,7 +41,12 @@ class App extends Component {
       })
     ])
       .then(values => {
-        return values[0].json();
+        if (values[0].ok) {
+          console.log(values[0])
+          return values[0].json();
+        } else {
+          throw new Error('Fetch Failed!');
+        }
       })
       .then(json => this.setState({ results: json, loading: false }))
       .catch(error => {
@@ -50,37 +56,37 @@ class App extends Component {
   render() {
     console.log(this.state.results);
     return (
-        <div>
-          <NavBar />
-          <Route
-            path="/"
-            exact={true}
-            component={() => (
-              <SearchContainer
-                fetchResults={this.fetchResults}
-                results={this.state.results}
-                loading={this.state.loading}
-                error={this.state.error}
+      <div>
+        <NavBar />
+        <Route
+          path="/"
+          exact={true}
+          component={() => (
+            <SearchContainer
+              fetchResults={this.fetchResults}
+              results={this.state.results}
+              loading={this.state.loading}
+              error={this.state.error}
+            />
+          )}
+        />
+        <Route
+          path="/result/:id"
+          render={props =>
+            this.state.results ? (
+              <FullVideoItem {...props} results={this.state.results} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: "/",
+                  state: { from: props.location }
+                }}
               />
-            )}
-          />
-          <Route
-            path="/result/:id"
-            render={props =>
-              this.state.results ? (
-                <FullVideoItem {...props} results={this.state.results} />
-              ) : (
-                <Redirect
-                  to={{
-                    pathname: "/",
-                    state: { from: props.location }
-                  }}
-                />
-              )
-            }
-          />
-          <Route exact={true} path="/top-ten" component={TopTen} />
-        </div>
+            )
+          }
+        />
+        <Route exact={true} path="/top-ten" component={TopTen} />
+      </div>
     );
   }
 }
