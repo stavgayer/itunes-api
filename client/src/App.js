@@ -26,9 +26,10 @@ class App extends Component {
       .split(" ")
       .join("+");
 
+    
     Promise.all([
       fetch(
-        `https://itunes.apple.com/search?term=${value}&entity=musicVideo&limit=25`
+        `/queryItunes?searchTerm=${value}`
       ),
       fetch(`/search`, {
         method: "POST",
@@ -40,8 +41,9 @@ class App extends Component {
       })
     ])
       .then(values => {
+        console.log(values)
+
         if (values[0].ok) {
-          console.log(values[0])
           return values[0].json();
         } else {
           throw new Error('Fetch Failed!');
@@ -53,7 +55,6 @@ class App extends Component {
       });
   };
   render() {
-    console.log(this.state.results);
     return (
       <div>
         <NavBar />

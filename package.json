@@ -12,7 +12,7 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "concurrently": "^4.0.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "isomorphic-fetch": "^2.2.1",
     "mongoose": "^5.3.11",
     "morgan": "^1.9.1"
   },
